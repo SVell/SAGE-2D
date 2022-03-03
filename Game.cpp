@@ -39,9 +39,6 @@ void Game::Init(const char *title, int xPos, int yPos, int width, int height, bo
     }
 
     SDL_Surface* tempSurface = IMG_Load("../Assets/Player.png");
-    if(tempSurface == nullptr){
-        std::cout << "Pizde";
-    }
     playerTex = SDL_CreateTextureFromSurface(renderer, tempSurface);
     SDL_FreeSurface(tempSurface);
 }
