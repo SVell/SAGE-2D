@@ -25,6 +25,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="D:/CPP_Games/2DGameEngine/../SDL2/include"/>
+					<Add directory="D:/CPP_Games/2DGameEngine/../SDL2_Image/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
@@ -48,6 +49,7 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="D:/CPP_Games/2DGameEngine/../SDL2/include"/>
+					<Add directory="D:/CPP_Games/2DGameEngine/../SDL2_Image/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/mingw32"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include/c++/backward"/>
@@ -84,6 +86,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/CPP_Games/2DGameEngine/Game.cpp">
+			<Option target="2DGameEngine"/>
+		</Unit>
+		<Unit filename="D:/CPP_Games/2DGameEngine/Game.h">
+			<Option target="2DGameEngine"/>
+		</Unit>
 		<Unit filename="D:/CPP_Games/2DGameEngine/main.cpp">
 			<Option target="2DGameEngine"/>
 		</Unit>
