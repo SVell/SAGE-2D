@@ -3,19 +3,14 @@ project(2DGameEngine)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SDL2_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../SDL2/include)
-set(SDL2_LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../SDL2/lib/x86)
-set(SDL2_IMAGE_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/../SDL2_Image/include)
-set(SDL2_IMAGE_LIB_DIR ${CMAKE_SOURCE_DIR}/../SDL2_Image/lib/x86)
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 
-include_directories(${SDL2_INCLUDE_DIR})
-include_directories(${SDL2_IMAGE_INCLUDE_DIR})
-
-link_directories(${SDL2_LIB_DIR})
-link_directories(${SDL2_IMAGE_LIB_DIR})
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
 
 add_executable(2DGameEngine main.cpp Game.cpp Game.h)
 
 # Should add dll files to SysWOW64
-target_link_libraries(${PROJECT_NAME} SDL2main SDL2 SDL2_image)
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -mwindows -lSDL2_image)
 
