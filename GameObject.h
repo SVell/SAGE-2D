@@ -1,12 +1,12 @@
 #ifndef INC_2DGAMEENGINE_GAMEOBJECT_H
 #define INC_2DGAMEENGINE_GAMEOBJECT_H
 
-#include <SDL.h>
+#include "Game.h"
 
 class GameObject{
 
 public:
-    GameObject(const char* texturesheet, SDL_Renderer* renderer, int x = 0, int y = 0);
+    GameObject(const char* texturesheet, int x = 0, int y = 0);
     ~GameObject();
 
     void Update();
@@ -17,8 +17,6 @@ private:
 
     SDL_Texture* texture;
     SDL_Rect srcRect, destRect;
-    SDL_Renderer* renderer;
-
 };
 
 #endif //INC_2DGAMEENGINE_GAMEOBJECT_H
