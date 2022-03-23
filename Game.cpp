@@ -2,11 +2,17 @@
 #include "GameObject.h"
 #include "Map.h"
 
+#include "ECS.h"
+#include "Components.h"
+
 
 GameObject* player;
 Map* map;
 
 SDL_Renderer* Game::renderer = nullptr;
+
+Manager manager;
+auto& newPlayer(manager.AddEntity());
 
 Game::Game() {
 
@@ -45,6 +51,8 @@ void Game::Init(const char *title, int xPos, int yPos, int width, int height, bo
 
     player = new GameObject("../Assets/Player.png", 0, 0);
     map = new Map();
+
+    newPlayer.AddComponent<PositionComponent>();
 }
 
 void Game::HandleEvents() {
@@ -62,6 +70,8 @@ void Game::HandleEvents() {
 
 void Game::Update() {
     player->Update();
+
+    manager.Update();
 }
 
 void Game::Render() {
@@ -69,6 +79,8 @@ void Game::Render() {
 
     map->DrawMap();
     player->Render();
+
+    manager.Draw();
 
     SDL_RenderPresent(renderer);
 }
