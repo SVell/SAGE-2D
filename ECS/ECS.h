@@ -50,10 +50,11 @@ private:
 public:
     void Update(){
         for(auto& c : components) c->Update();
-        for(auto& c : components) c->Draw();
     }
 
-    void Draw(){}
+    void Draw(){
+        for(auto& c : components) c->Draw();
+    }
     bool IsActive() const { return active; }
     void Destroy() { active = false; }
 
