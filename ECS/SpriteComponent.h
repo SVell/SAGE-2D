@@ -15,6 +15,10 @@ public:
         SetTexture(texturePath);
     }
 
+    ~SpriteComponent(){
+        SDL_DestroyTexture(texture);
+    }
+
     void SetTexture(const char* path){
         texture = TextureManager::LoadTexture(path);
     }
@@ -24,8 +28,10 @@ public:
         transform = &entity->GetComponent<TransformComponent>();
 
         srcRect.x = srcRect.y = 0;
-        srcRect.w = srcRect.h = 32;
-        destRect.w = destRect.h = 64;
+        srcRect.w = transform->width;
+        srcRect.h = transform->height;
+        destRect.w = transform->width * transform->scale;
+        destRect.h = transform->height * transform->scale;
     }
 
     void Update() override{

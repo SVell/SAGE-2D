@@ -59,7 +59,7 @@ public:
     void Destroy() { active = false; }
 
     template<typename T> bool HasComponent() const{
-        return componentBitSet[GetComponentTypeID<T>];
+        return componentBitSet[GetComponentTypeID<T>()];
     }
 
     template<typename T, typename... TArgs>

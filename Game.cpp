@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Map.h"
 #include "ECS/Components.h"
+#include "Collision.h"
 
 Map* map;
 Manager manager;
@@ -9,6 +10,7 @@ SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
 
 auto& player(manager.AddEntity());
+auto& wall(manager.AddEntity());
 
 Game::Game() {
 
@@ -26,17 +28,17 @@ void Game::Init(const char *title, int xPos, int yPos, int width, int height, bo
     }
 
     if(SDL_Init(SDL_INIT_EVENTS) == 0){
-        std:: cout << "Subsystems initialised!..." << std::endl;
+        SDL_Log("Subsystems initialised!...");
 
         window = SDL_CreateWindow(title, xPos, yPos, width, height, flags);
         if(window != nullptr){
-            std::cout << "Window created!" << std::endl;
+            SDL_Log("Window created!");
         }
 
         renderer = SDL_CreateRenderer(window, -1, 0);
         if(renderer != nullptr){
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-            std::cout << "Renderer created!" << std::endl;
+            SDL_Log("Renderer created!");
         }
 
         isRunning = true;
@@ -47,9 +49,14 @@ void Game::Init(const char *title, int xPos, int yPos, int width, int height, bo
 
     map = new Map();
 
-    player.AddComponent<TransformComponent>();
+    player.AddComponent<TransformComponent>(2);
     player.AddComponent<KeyboardController>();
     player.AddComponent<SpriteComponent>("../Assets/Player.png");
+    player.AddComponent<ColliderComponent>("Player");
+
+    wall.AddComponent<TransformComponent>(300, 300, 300, 20, 1);
+    wall.AddComponent<SpriteComponent>("../Assets/Dirt.png");
+    wall.AddComponent<ColliderComponent>("Wall");
 }
 
 void Game::HandleEvents() {
@@ -67,6 +74,13 @@ void Game::HandleEvents() {
 void Game::Update() {
     manager.Refresh();
     manager.Update();
+
+    setbuf(stdout, NULL);
+
+    if(Collision::AABB(player.GetComponent<ColliderComponent>().collider,
+                       wall.GetComponent<ColliderComponent>().collider)){
+        SDL_Log("Wall Hit");
+    }
 }
 
 void Game::Render() {
