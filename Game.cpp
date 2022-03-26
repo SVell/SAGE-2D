@@ -3,10 +3,11 @@
 #include "ECS/Components.h"
 
 Map* map;
+Manager manager;
 
 SDL_Renderer* Game::renderer = nullptr;
+SDL_Event Game::event;
 
-Manager manager;
 auto& player(manager.AddEntity());
 
 Game::Game() {
@@ -47,11 +48,11 @@ void Game::Init(const char *title, int xPos, int yPos, int width, int height, bo
     map = new Map();
 
     player.AddComponent<TransformComponent>();
+    player.AddComponent<KeyboardController>();
     player.AddComponent<SpriteComponent>("../Assets/Player.png");
 }
 
 void Game::HandleEvents() {
-    SDL_Event event;
     SDL_PollEvent(&event);
 
     switch (event.type) {

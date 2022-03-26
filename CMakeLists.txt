@@ -9,7 +9,7 @@ find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR})
 
-add_executable(2DGameEngine main.cpp Game.cpp Game.h TextureManager.h TextureManager.cpp GameObject.h GameObject.cpp Map.h Map.cpp ECS/ECS.h ECS/Components.h ECS/SpriteComponent.h ECS/TransformComponent.h Vector2.cpp Vector2.h)
+add_executable(2DGameEngine main.cpp Game.cpp Game.h TextureManager.h TextureManager.cpp GameObject.h GameObject.cpp Map.h Map.cpp ECS/ECS.h ECS/Components.h ECS/SpriteComponent.h ECS/TransformComponent.h Vector2.cpp Vector2.h ECS/KeyboardController.h)
 
 # Should add dll files to SysWOW64
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} -lmingw32 -lSDL2main -lSDL2 -mwindows -lSDL2_image)

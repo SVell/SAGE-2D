@@ -14,7 +14,7 @@ int main(int argc, char* args[]) {
     int frameTime;
 
     game = new Game();
-    game->Init("SellBro Game Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, false);
+    game->Init("SAGE 2D", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, false);
 
     while(game->Running()){
         frameStart = SDL_GetTicks();
