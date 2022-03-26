@@ -46,7 +46,7 @@ void Game::Init(const char *title, int xPos, int yPos, int width, int height, bo
 
     map = new Map();
 
-    player.AddComponent<PositionComponent>();
+    player.AddComponent<TransformComponent>();
     player.AddComponent<SpriteComponent>("../Assets/Player.png");
 }
 
