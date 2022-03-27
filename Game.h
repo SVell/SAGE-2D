@@ -2,8 +2,10 @@
 #define INC_2DGAMEENGINE_GAME_H
 
 #include <iostream>
-
 #include <SDL2/SDL.h>
+#include <vector>
+
+class ColliderComponent;
 
 class Game {
 
@@ -20,8 +22,11 @@ public:
 
     bool Running(){return isRunning;}
 
+    static void AddTile(int id, int x, int y);
     static SDL_Renderer* renderer;
     static SDL_Event event;
+
+    static std::vector<ColliderComponent*> colliders;
 private:
     bool isRunning;
     SDL_Window* window;

@@ -9,6 +9,8 @@ Manager manager;
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
 
+std::vector<ColliderComponent*> Game::colliders;
+
 auto& player(manager.AddEntity());
 auto& wall(manager.AddEntity());
 
@@ -47,7 +49,7 @@ void Game::Init(const char *title, int xPos, int yPos, int width, int height, bo
         isRunning = false;
     }
 
-    map = new Map();
+    Map::LoadMap("../Assets/Map16x16.map", 16, 16);
 
     player.AddComponent<TransformComponent>(2);
     player.AddComponent<KeyboardController>();
@@ -77,16 +79,16 @@ void Game::Update() {
 
     setbuf(stdout, NULL);
 
-    if(Collision::AABB(player.GetComponent<ColliderComponent>().collider,
-                       wall.GetComponent<ColliderComponent>().collider)){
-        SDL_Log("Wall Hit");
+    for(auto cc : colliders){
+        if(Collision::AABB(player.GetComponent<ColliderComponent>(), *cc)){
+            SDL_Log("Wall Hit");
+        }
     }
 }
 
 void Game::Render() {
     SDL_RenderClear(renderer);
 
-    map->DrawMap();
     manager.Draw();
 
     SDL_RenderPresent(renderer);
@@ -98,4 +100,9 @@ void Game::Clean() {
     SDL_Quit();
 
     std::cout << "Game cleaned" << std::endl;
+}
+
+void Game::AddTile(int id, int x, int y) {
+    auto& tile(manager.AddEntity());
+    tile.AddComponent<TileComponent>(x, y, 32, 32, id);
 }
