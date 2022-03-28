@@ -60,7 +60,7 @@ void Game::Init(const char *title, int xPos, int yPos, int width, int height, bo
 
     player.AddComponent<TransformComponent>(2);
     player.AddComponent<KeyboardController>();
-    player.AddComponent<SpriteComponent>("../Assets/Player.png");
+    player.AddComponent<SpriteComponent>("../Assets/PlayerIdle.png", 2, 400);
     player.AddComponent<ColliderComponent>("Player");
     player.AddGroup(PlayerGroup);
 
