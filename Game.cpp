@@ -59,8 +59,8 @@ void Game::Init(const char *title, int xPos, int yPos, int width, int height, bo
     Map::LoadMap("../Assets/Map16x16.map", 16, 16);
 
     player.AddComponent<TransformComponent>(2);
+    player.AddComponent<SpriteComponent>("../Assets/PlayerAnims.png", true);
     player.AddComponent<KeyboardController>();
-    player.AddComponent<SpriteComponent>("../Assets/PlayerIdle.png", 2, 400);
     player.AddComponent<ColliderComponent>("Player");
     player.AddGroup(PlayerGroup);
 
