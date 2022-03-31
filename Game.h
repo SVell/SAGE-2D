@@ -25,10 +25,11 @@ public:
     static void AddTile(int srcX, int srcY, int x, int y);
     static SDL_Renderer* renderer;
     static SDL_Event event;
+    static bool isRunning;
 
     static std::vector<ColliderComponent*> colliders;
+
 private:
-    bool isRunning;
     SDL_Window* window;
 };
 

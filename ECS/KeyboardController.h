@@ -36,6 +36,9 @@ public:
                     sprite->Play("Walk");
                     sprite->flipX = SDL_FLIP_NONE;
                     break;
+                case SDLK_ESCAPE:
+                    Game::isRunning = false;
+                    break;
                 default:
                     break;
             }
